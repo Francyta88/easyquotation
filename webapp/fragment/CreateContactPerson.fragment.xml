@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:ff="sap.f">
+	<Dialog horizontalScrolling="false" showHeader="true" state="None" stretch="false" title="{i18n>addNewContactPerson}" type="Standard"
+		verticalScrolling="true" class="sapUiResponsiveContentPadding" contentHeight="50%" contentWidth="75%">
+		<content>
+			<f:SimpleForm id="CreateContactPerson" editable="true" layout="ResponsiveGridLayout" labelSpanXL="1" labelSpanL="1" labelSpanM="12"
+				labelSpanS="12" adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="0" columnsL="0" columnsM="0"
+				singleContainerFullSize="true" ariaLabelledBy="Title1">
+				<f:content>
+					<Label text="*{i18n>firstName}"></Label>
+					<Input id="firstNameCCP"></Input>
+					<Label text="*{i18n>lastName}"></Label>
+					<Input id="lastNameCCP"></Input>
+					<Label text="*{i18n>eMail}"></Label>
+					<Input id="emailCCP" type="Email"></Input>
+					<Label text="{i18n>phoneNumber}"></Label>
+					<Input id="phoneNumberCCP" type="Number"></Input>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<buttons>
+			<Button icon="sap-icon://add-employee" text="{i18n>addContactPerson}" press="addCreateContactPerson"/>
+			<Button icon="sap-icon://decline" text="{i18n>closeContactPerson}" press="closeCreateContactPerson"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

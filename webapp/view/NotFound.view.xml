@@ -1,0 +1,16 @@
+<mvc:View controllerName="zotc_easyquote.zotc_easyquote.controller.NotFound" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc">
+	<Page showFooter="true" showNavButton="false">
+		<MessagePage text="{i18n>NotFound.text}" description="{i18n>NotFound.description}"
+			showHeader="false"/>
+		<customHeader >
+			<Bar class="backgroundColorBar">
+				<contentLeft>
+					<Button type="Back" press="onNavBack"></Button>
+				</contentLeft>
+				<contentMiddle>
+					<Text text="{i18n>NotFound}" class="fontHeader"></Text>
+				</contentMiddle>
+			</Bar>
+		</customHeader>
+	</Page>
+</mvc:View>

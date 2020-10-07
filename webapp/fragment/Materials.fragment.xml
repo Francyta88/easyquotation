@@ -1,0 +1,56 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:table="sap.ui.table" xmlns:u="sap.ui.unified"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" height="100%" displayBlock="true" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:ff="sap.f" xmlns:cards="sap.f.cards" xmlns:f="sap.ui.layout.form">
+	<VBox class="sapUiSmallMargin">
+		<f:SimpleForm id="SimpleFormMaterials" editable="true" layout="ResponsiveGridLayout" labelSpanXL="2" labelSpanL="2" labelSpanM="12"
+			labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="0" columnsL="0" columnsM="0"
+			singleContainerFullSize="true" ariaLabelledBy="Title1">
+			<f:content>
+				<Label text="{i18n>MFsearchMaterials}"/>
+				<SearchField value="{viewState>/materialSearchString}" placeholder="{i18n>MFmaterials}" search="handleMaterialSearch">
+					<layoutData>
+						<l:GridData span="XL4 L4 M12 S12"/>
+					</layoutData>
+				</SearchField>
+				<SearchField value="{viewState>/customerMaterialSearchString}" placeholder="{i18n>MFcustomerMaterials}"
+					search="handleCustomerMaterialSearch">
+					<layoutData>
+						<l:GridData span="XL4 L4 M12 S12"/>
+					</layoutData>
+				</SearchField>
+				<Button icon="sap-icon://excel-attachment" press="openSMA">
+					<layoutData>
+						<l:GridData span="XL1 L1 M1 S2"/>
+					</layoutData>
+				</Button>
+			</f:content>
+		</f:SimpleForm>
+		<ff:Card class="sapUiSmallMarginRigth">
+			<ff:content>
+				<Table itemPress="onMaterialSelection" width="auto" items="{ path: 'viewState>/listMaterials'}" growing="true" growingScrollToLoad="true"
+					mode="SingleSelectMaster">
+					<columns>
+						<Column>
+							<Text text="{i18n>MFmatCode}"/>
+						</Column>
+						<Column >
+							<Text text="{i18n>MFmatDescr}"/>
+						</Column>
+						<Column demandPopin="true" minScreenWidth="Tablet">
+							<Text text="{i18n>MFmatPlant}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem type="Navigation" press="onPress">
+							<cells>
+								<Text text="{viewState>Matnr}"/>
+								<Text text="{viewState>Maktx}"/>
+								<Text text="{viewState>Werks}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</ff:content>
+		</ff:Card>
+	</VBox>
+</core:FragmentDefinition>

@@ -1,0 +1,174 @@
+<mvc:View controllerName="zotc_easyquote.zotc_easyquote.controller.HomePage" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable">
+	<Page showFooter="true" showHeader="false" showNavButton="false">
+		<content>
+			<smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="QuotationSet" useDateRangeType="false" considerSelectionVariants="true"
+				liveMode="true">
+				<smartFilterBar:controlConfiguration>
+					<smartFilterBar:ControlConfiguration key="TypeQuote" visibleInAdvancedArea="true" label="{i18n>typeFilterBar}">
+						<smartFilterBar:customControl>
+							<Select change="changeQuotesType" selectedKey="0">
+								<core:Item key="0" text="{i18n>myQuotes}"/>
+								<core:Item key="1" text="{i18n>salesOfficeQuotes}"/>
+							</Select>
+						</smartFilterBar:customControl>
+					</smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration key="QuotationNo" label="{i18n>findByNrFilterBar}" visibleInAdvancedArea="true" index="0"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration key="QuotationName" label="{i18n>findByProjectNameFilterBar}" visibleInAdvancedArea="true" index="1"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration key="Title" label="{i18n>findByTitleFilterBar}" visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration key="CustomerId" label="{i18n>filterByCustomerIdFilterBar}" visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration key="CustomerName" label="{i18n>filterByCustomerNameFilterBar}" visibleInAdvancedArea="false"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration key="Tag" label="{i18n>tagColumn}" visibleInAdvancedArea="false"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration key="SapQuotationNo" label="{i18n>sapQuotationNoFilterBar}" visibleInAdvancedArea="false"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration key="QuotationDate" label="{i18n>dateFilterBar}" visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration key="Material" label="{i18n>searchByProductFilterBar}" visibleInAdvancedArea="true"></smartFilterBar:ControlConfiguration>
+					<smartFilterBar:ControlConfiguration key="ClearFilter" visibleInAdvancedArea="true" label="{i18n>resetFiltersFilterBar}" index="0">
+						<smartFilterBar:customControl>
+							<Button type="Reject" icon="sap-icon://delete" press="clearFilter"/>
+						</smartFilterBar:customControl>
+					</smartFilterBar:ControlConfiguration>
+				</smartFilterBar:controlConfiguration>
+				<smartFilterBar:layoutData>
+					<FlexItemData shrinkFactor="0"/>
+				</smartFilterBar:layoutData>
+			</smartFilterBar:SmartFilterBar>
+			<smartTable:SmartTable id="LineItemsSmartTable" entitySet="QuotationSet" beforeRebindTable="onBeforeRebindTable"
+				smartFilterId="smartFilterBar" tableType="ResponsiveTable" placeToolbarInTable="true" useExportToExcel="true" beforeExport="onBeforeExport"
+				useVariantManagement="true" showVariantManagement="true" useTablePersonalisation="true" header="{i18n>myQuotations}" showRowCount="false"
+				persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true" demandPopin="true" class="sapUiResponsiveContentPadding"
+				ignoreFromPersonalisation="Version, VersionName, CompanyCode, SalesOrganization, SalesOffice, SalesGroup, CustomerId, DistributionChannel, ShipToParty, ShipToAddress, ContactPerson, ContactPersonFromSap, PaymentTerm, PaymentTermName, DeliveryTerm, DeliveryTerm2, SalesCurrency, Comments, StatusLostReason, Drum, FreightCost, Alc, Cuc, Pbc, Als, Cus,, Rounding, ExchangeRate, DrumCost, Pbs, CustomerAddressCity, CustomerAddressPostcode, CustomerAddressStreet, CustomerAddressHouse, CustomerAddressCountry, ShipToAddressCity, ShipToAddressPostcode, ShipToAddressStreet, ShipToAddressHouse, ShipToAddressCountry, QuotationSaveDt, QuotationSaveTm, Language, ShipToPartyName, Cm, Cost, Material, HeaderText, FreeText, UnreadNotifications, NetValueEur, Mode, SalesDocumentType"
+				requestAtLeastFields="VersionName,CompanyCode,SalesOrganization,SalesOffice,SalesGroup,CustomerId,DistributionChannel,ShipToParty,ShipToAddress,ContactPerson,ContactPersonFromSap,PaymentTerm,PaymentTermName,DeliveryTerm,DeliveryTerm2,SalesCurrency,Comments,StatusLostReason,Drum,FreightCost,CustomerAddressCity,CustomerAddressPostcode,CustomerAddressStreet,CustomerAddressHouse,CustomerAddressCountry,ShipToAddressCity,ShipToAddressPostcode,ShipToAddressStreet,ShipToAddressHouse,ShipToAddressCountry,QuotationSaveDt,QuotationSaveTm,Language,ShipToPartyName,Cm,Cost,Material,HeaderText,FreeText,UnreadNotifications,NetValueEur,Mode,Title,SalesDocumentType">
+				<Table sticky="ColumnHeaders,HeaderToolbar" id="internalTable" mode="SingleSelectMaster" itemPress="onRowSelection">
+					<columns>
+						<Column hAlign="Left" id="Number">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey": "QuotationNo", "leadingProperty": ["QuotationNo", "Version"], "columnIndex":"0", "sortProperty": "QuotationNo", "filterProperty": "QuotationNo"}'/>
+							</customData>
+							<Text text="{i18n>numberColumn}"/>
+						</Column>
+						<Column id="ProjectName">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey": "QuotationName", "leadingProperty": "QuotationName", "columnIndex":"2", "filterProperty": "QuotationName", "sortProperty": "QuotationName"}'/>
+							</customData>
+							<Text text="{i18n>projectNameColumn}"/>
+						</Column>
+						<Column id="Customer">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey": "CustomerName", "leadingProperty": ["CustomerName", "CustomerId"], "columnIndex":"3", "filterProperty": "CustomerName", "sortProperty": "CustomerName"}'/>
+							</customData>
+							<Text text="{i18n>customerColumn}"/>
+						</Column>
+						<Column id="Status">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey": "Status", "leadingProperty": "Status", "columnIndex":"4", "filterProperty": "Status", "sortProperty": "Status"}'/>
+							</customData>
+							<Text text="{i18n>statusColumn}"/>
+						</Column>
+						<Column id="ModifyDate">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey": "QuotationDate", "leadingProperty": "QuotationDate", "type":"date", "columnIndex":"5", "filterProperty": "QuotationDate", "sortProperty": "QuotationDate"}'/>
+							</customData>
+							<Text text="{i18n>modifyDateColumn}"/>
+						</Column>
+						<Column id="ValidationDate">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey": "QuotationValid", "leadingProperty": "QuotationValid", "type":"date", "columnIndex":"6", "filterProperty": "QuotationValid", "sortProperty": "QuotationValid"}'/>
+							</customData>
+							<Text text="{i18n>validationDateColumn}"/>
+						</Column>
+						<Column id="Value">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey": "NetValue", "leadingProperty": ["NetValue", "SalesCurrency"], "columnIndex":"7", "filterProperty": "NetValue", "sortProperty": "NetValue"}'/>
+							</customData>
+							<Text text="{i18n>valueColumn}"/>
+						</Column>
+						<Column id="SapQuotation">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey": "SapQuotationNo", "leadingProperty": "SapQuotationNo", "columnIndex":"8", "filterProperty": "SapQuotationNo", "sortProperty": "SapQuotationNo"}'/>
+							</customData>
+							<Text text="{i18n>sapQuotationColumn}"/>
+						</Column>
+						<Column id="CreatedBy">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey": "Bname", "leadingProperty": "Bname", "columnIndex":"9", "filterProperty": "Bname", "sortProperty": "Bname"}'/>
+							</customData>
+							<Text text="{i18n>createByColumn}"/>
+						</Column>
+						<Column id="Title">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey": "Title", "leadingProperty": "Title", "columnIndex":"10", "filterProperty": "Title", "sortProperty": "Title"}'/>
+							</customData>
+							<Text text="{i18n>titleColumn}"/>
+						</Column>
+						<Column id="Tag">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey": "Tag", "leadingProperty": "Tag", "columnIndex":"11", "filterProperty": "Tag", "sortProperty": "Tag"}'/>
+							</customData>
+							<Text text="{i18n>tag}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem type="Active">
+							<cells>
+								<Text text="{QuotationNo} / {Version}"/>
+							</cells>
+							<cells>
+								<Text text="{QuotationName}"/>
+							</cells>
+							<cells>
+								<Text text="{CustomerName}"/>
+							</cells>
+							<cells>
+								<Text text="{path : 'Status', formatter : '.formatter.formatStatus'}"/>
+							</cells>
+							<cells>
+								<Text text="{path : 'QuotationDate', formatter : '.formatter.formatDate'}"/>
+							</cells>
+							<cells>
+								<Text text="{path : 'QuotationValid', formatter : '.formatter.formatDate'}"/>
+							</cells>
+							<cells>
+								<ObjectNumber number="{path : 'NetValue', formatter : '.formatter.formatNumber'}" unit="({SalesCurrency})"/>
+							</cells>
+							<cells>
+								<Text text="{SapQuotationNo}"/>
+							</cells>
+							<cells>
+								<Text text="{Bname}"/>
+							</cells>
+							<cells>
+								<Text text="{Title}"/>
+								<!--<core:Icon src="sap-icon://message-popup" tooltip="{Title}" visible="{= ${Title} !== ''}"/>-->
+							</cells>
+							<cells>
+								<Text text="{Tag}"></Text>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				<smartTable:layoutData>
+					<FlexItemData growFactor="1" baseSize="0%"/>
+				</smartTable:layoutData>
+			</smartTable:SmartTable>
+		</content>
+		<footer>
+			<OverflowToolbar width="100%" design="Auto" enabled="true" visible="true">
+				<content>
+					<ToolbarSpacer width=""/>
+					<Button text="{i18n>create}" class="sapUiTinyMarginEnd" press="pressCreate"></Button>
+				</content>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

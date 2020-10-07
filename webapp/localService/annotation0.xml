@@ -1,0 +1,77 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="/sap/opu/odata/sap/ZOTC_EASYQUOTE_SRV/$metadata">
+		<edmx:Include Alias="Metadata" Namespace="ZOTC_EASYQUOTE_SRV"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470974/Common.xml?api=v2">
+		<edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="zotc_easyquote.localService.annotation0.ZOTC_EASYQUOTE_SRV">
+			<Annotations Target="Metadata.ZOTC_EASYQUOTE_SRV_Entities/QuotationSet">
+				<Annotation Term="Common.SemanticObject" String="QuotationNo" Qualifier="QuotationNo"/>
+				<Annotation Term="Common.SemanticObject" String="Version" Qualifier="Version"/>
+				<Annotation Term="Common.SemanticObject" String="VersionName" Qualifier="VersionName"/>
+				<Annotation Term="Common.SemanticObject" String="Bname" Qualifier="Bname"/>
+				<Annotation Term="Common.SemanticObject" String="CompanyCode" Qualifier="CompanyCode"/>
+				<Annotation Term="Common.SemanticObject" String="SalesOrganization" Qualifier="SalesOrganization"/>
+				<Annotation Term="Common.SemanticObject" String="SalesOffice" Qualifier="SalesOffice"/>
+				<Annotation Term="Common.SemanticObject" String="SalesGroup" Qualifier="SalesGroup"/>
+				<Annotation Term="Common.SemanticObject" String="CustomerId" Qualifier="CustomerId"/>
+				<Annotation Term="Common.SemanticObject" String="DistributionChannel" Qualifier="DistributionChannel"/>
+				<Annotation Term="Common.SemanticObject" String="ShipToParty" Qualifier="ShipToParty"/>
+				<Annotation Term="Common.SemanticObject" String="ShipToAddress" Qualifier="ShipToAddress"/>
+				<Annotation Term="Common.SemanticObject" String="ContactPerson" Qualifier="ContactPerson"/>
+				<Annotation Term="Common.SemanticObject" String="ContactPersonFromSap" Qualifier="ContactPersonFromSap"/>
+				<Annotation Term="Common.SemanticObject" String="PaymentTerm" Qualifier="PaymentTerm"/>
+				<Annotation Term="Common.SemanticObject" String="PaymentTermName" Qualifier="PaymentTermName"/>
+				<Annotation Term="Common.SemanticObject" String="DeliveryTerm" Qualifier="DeliveryTerm"/>
+				<Annotation Term="Common.SemanticObject" String="DeliveryTerm2" Qualifier="DeliveryTerm2"/>
+				<Annotation Term="Common.SemanticObject" String="QuotationName" Qualifier="QuotationName"/>
+				<Annotation Term="Common.SemanticObject" String="QuotationDate" Qualifier="QuotationDate"/>
+				<Annotation Term="Common.SemanticObject" String="QuotationValid" Qualifier="QuotationValid"/>
+				<Annotation Term="Common.SemanticObject" String="SalesCurrency" Qualifier="SalesCurrency"/>
+				<Annotation Term="Common.SemanticObject" String="Comments" Qualifier="Comments"/>
+				<Annotation Term="Common.SemanticObject" String="Status" Qualifier="Status"/>
+				<Annotation Term="Common.SemanticObject" String="StatusLostReason" Qualifier="StatusLostReason"/>
+				<Annotation Term="Common.SemanticObject" String="Drum" Qualifier="Drum"/>
+				<Annotation Term="Common.SemanticObject" String="FreightCost" Qualifier="FreightCost"/>
+				<Annotation Term="Common.SemanticObject" String="NetValue" Qualifier="NetValue"/>
+				<Annotation Term="Common.SemanticObject" String="CustomerName" Qualifier="CustomerName"/>
+				<Annotation Term="Common.SemanticObject" Qualifier="Alc" String="Alc"/>
+				<Annotation Term="Common.SemanticObject" String="Cuc" Qualifier="Cuc"/>
+				<Annotation Term="Common.SemanticObject" String="Pbc" Qualifier="Pbc"/>
+				<Annotation Term="Common.SemanticObject" String="Als" Qualifier="Als"/>
+				<Annotation Term="Common.SemanticObject" String="Cus" Qualifier="Cus"/>
+				<Annotation Term="Common.SemanticObject" String="Rounding" Qualifier="Rounding"/>
+				<Annotation Term="Common.SemanticObject" String="ExchangeRate" Qualifier="ExchangeRate"/>
+				<Annotation Term="Common.SemanticObject" String="DrumCost" Qualifier="DrumCost"/>
+				<Annotation Term="Common.SemanticObject" String="Pbs" Qualifier="Pbs"/>
+				<Annotation Term="Common.SemanticObject" String="CustomerAddressCity" Qualifier="CustomerAddressCity"/>
+				<Annotation Term="Common.SemanticObject" String="CustomerAddressPostcode" Qualifier="CustomerAddressPostcode"/>
+				<Annotation Term="Common.SemanticObject" String="CustomerAddressStreet" Qualifier="CustomerAddressStreet"/>
+				<Annotation Term="Common.SemanticObject" String="CustomerAddressHouse" Qualifier="CustomerAddressHouse"/>
+				<Annotation Term="Common.SemanticObject" String="CustomerAddressCountry" Qualifier="CustomerAddressCountry"/>
+				<Annotation Term="Common.SemanticObject" String="ShipToAddressCity" Qualifier="ShipToAddressCity"/>
+				<Annotation Term="Common.SemanticObject" String="ShipToAddressPostcode" Qualifier="ShipToAddressPostcode"/>
+				<Annotation Term="Common.SemanticObject" String="ShipToAddressStreet" Qualifier="ShipToAddressStreet"/>
+				<Annotation Term="Common.SemanticObject" String="ShipToAddressHouse" Qualifier="ShipToAddressHouse"/>
+				<Annotation Term="Common.SemanticObject" String="ShipToAddressCountry" Qualifier="ShipToAddressCountry"/>
+				<Annotation Term="Common.SemanticObject" String="QuotationSaveDt" Qualifier="QuotationSaveDt"/>
+				<Annotation Term="Common.SemanticObject" String="QuotationSaveTm" Qualifier="QuotationSaveTm"/>
+				<Annotation Term="Common.SemanticObject" String="SapQuotationNo" Qualifier="SapQuotationNo"/>
+				<Annotation Term="Common.SemanticObject" String="Language" Qualifier="Language"/>
+				<Annotation Term="Common.SemanticObject" String="ShipToPartyName" Qualifier="ShipToPartyName"/>
+				<Annotation Term="Common.SemanticObject" String="Cm" Qualifier="Cm"/>
+				<Annotation Term="Common.SemanticObject" String="Cost" Qualifier="Cost"/>
+				<Annotation Term="Common.SemanticObject" String="Material" Qualifier="Material"/>
+				<Annotation Term="Common.SemanticObject" String="HeaderText" Qualifier="HeaderText"/>
+				<Annotation Term="Common.SemanticObject" String="FreeText" Qualifier="FreeText"/>
+				<Annotation Term="Common.SemanticObject" String="UnreadNotifications" Qualifier="UnreadNotifications"/>
+				<Annotation Term="Common.SemanticObject" String="NetValueEur" Qualifier="NetValueEur"/>
+				<Annotation Term="Common.SemanticObject" String="Title" Qualifier="Title"/>
+				<Annotation Term="Common.SemanticObject" String="SalesDocumentType" Qualifier="SalesDocumentType"/>
+				<Annotation Term="Common.SemanticObject" String="Tag" Qualifier="SalesDocumentType"/>
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

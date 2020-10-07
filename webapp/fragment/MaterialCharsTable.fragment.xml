@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:ff="sap.f">
+	<Dialog horizontalScrolling="false" showHeader="true" state="None" stretch="false" title="{i18n>MCFtitle}" type="Standard"
+		verticalScrolling="true" class="sapUiResponsiveContentPadding">
+		<content>
+			<Table width="auto" items="{ path: 'globalModel>/selectedMaterial/Chars'}" growing="true" growingScrollToLoad="true">
+				<columns>
+					<Column>
+						<Text text="{i18n>MCFcharName}"/>
+					</Column>
+					<Column >
+						<Text text="{i18n>MCFcharValue}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{globalModel>DescrChar}"/>
+							<HBox>
+								<Input value="{globalModel>CharValue}" maxLength="{globalModel>NumberDigits}" type="Text" visible="{= ${globalModel>InputMode} === 'I'}"
+									liveChange="onInputNumberChange" editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}"/>
+								<Select items="{path: 'globalModel>Values'}" class="zSelectWidth" selectedKey="{globalModel>CharValue}" change="onSelectCharChange"
+									visible="{= ${globalModel>InputMode} === 'S'}" editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}">
+									<items>
+										<core:ListItem text="{globalModel>CharValue} - {globalModel>DescrCval}" key="{globalModel>CharValue}"/>
+									</items>
+								</Select>
+							</HBox>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<buttons>
+			<Button icon="sap-icon://undo" text="{i18n>MCFrestoreDefaults}" press="onRestoreDefaults"
+				visible="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}"/>
+			<Button icon="sap-icon://decline" text="{i18n>MCFclose}" press="oncloseMaterialChars"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

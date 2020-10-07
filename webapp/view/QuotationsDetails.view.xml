@@ -1,0 +1,83 @@
+<mvc:View controllerName="zotc_easyquote.zotc_easyquote.controller.QuotationsDetails" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:f="sap.ui.layout.form" xmlns:ff="sap.f" xmlns:smartTable="sap.ui.comp.smarttable">
+	<Page showFooter="true" showHeader="false" showSubHeader="false" showNavButton="false">
+		<HBox alignItems="Start" justifyContent="Start" backgroundDesign="Solid" class="sapUiContentPadding">
+			<items>
+				<HBox width="55%" alignItems="Start" justifyContent="Start" class="sapUiContentPadding">
+					<items>
+						<l:VerticalLayout width="100%">
+							<l:content class="sapUiResponsiveMargin">
+								<l:HorizontalLayout class="sapUiTinyMarginEnd">
+									<Text
+										text="{parts:[{path: 'globalModel>/headerInfo/headerInfoQuotationNo'}, {path: 'globalModel>/headerInfo/headerInfoQuotationVersion'}], formatter: '.formatter.formatHeaderQuotation'}"
+										class="sapUiSmallMarginTop sapUiTinyMarginBottom sapUiTinyMarginEnd bold headerSizeQuotation"></Text>
+									<Text text="({globalModel>/headerInfo/headerInfoQuotationSAP})" visible="{= ${globalModel>/headerInfo/headerInfoQuotationSAP} !== ''}"
+										class="sapUiSmallMarginTop sapUiTinyMarginBottom sapUiTinyMarginEnd bold headerSizeQuotation"></Text>
+								</l:HorizontalLayout>
+								<Text text="{i18n>titleQuotation}: {globalModel>/headerInfo/headerInfoQuotationTitle}"
+									visible="{= ${globalModel>/headerInfo/headerInfoQuotationTitle} !== ''}" class="sapUiTinyMarginBottom"></Text>
+								<Text
+									text="{i18n>salesOrganizationHeader} {globalModel>/userInfo/salesOrganization} - {i18n>distributionChannelHeader} {globalModel>/userInfo/distributionChannelName}"
+									class="sapUiTinyMarginBottom"></Text>
+								<Text
+									text="{i18n>customer}: {globalModel>/headerInfo/headerInfoQuotationCustomerId} - {globalModel>/headerInfo/headerInfoQuotationCustomerName}"
+									visible="{= ${globalModel>/headerInfo/headerInfoQuotationCustomerName} !== ''}"></Text>
+							</l:content>
+						</l:VerticalLayout>
+					</items>
+				</HBox>
+				<HBox width="5%" class="sapUiContentPadding"></HBox>
+				<HBox width="40%" alignItems="End" justifyContent="End" class="sapUiContentPadding">
+					<items>
+						<l:VerticalLayout width="100%" class="positionEnd">
+							<HBox class="positionEndCart">
+								<core:Icon src="{path : 'globalModel>/headerInfo/headerInfoQuotationCart', formatter : '.formatter.formatIconCart'}" width="45px"
+									size="35px" class="customIconBlack customIcon" press="onGoToCart" color="Default" activeColor="#666666"></core:Icon>
+								<Text text="{globalModel>/headerInfo/headerInfoQuotationCart}" visible="{= ${globalModel>/headerInfo/headerInfoQuotationCart} > 0}"
+									class="numberCart" wrapping="false"></Text>
+							</HBox>
+							<l:content class=" positionEnd">
+								<Text wrapping="false"
+									text="{path : 'globalModel>/quotationSelected/NetValue', formatter : '.formatter.formatNumber'} {globalModel>/headerInfo/headerInfoQuotationSalesCurrency}"
+									class="sapUiSmallMarginTop headerSizeNumber positionEnd"></Text>
+								<Text text="{i18n>status}: {globalModel>/headerInfo/headerInfoQuotationStatus}"
+									visible="{= ${globalModel>/headerInfo/headerInfoQuotationStatus} !== ''}" class="positionEnd"></Text>
+							</l:content>
+						</l:VerticalLayout>
+					</items>
+				</HBox>
+			</items>
+		</HBox>
+		<content>
+			<IconTabBar id="idIconTabBarMulti" expanded="true" select="pressIconTab" backgroundDesign="Transparent">
+				<items>
+					<IconTabFilter icon="sap-icon://study-leave" key="key1" class="sapUiLargeMarginBottom" iconColor="{viewState>/iconSalesDataPage}">
+						<core:Fragment fragmentName="zotc_easyquote.zotc_easyquote.fragment.SalesData" type="XML"/>
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://work-history" key="key2" iconColor="{viewState>/iconCustomerDataPage}">
+						<core:Fragment fragmentName="zotc_easyquote.zotc_easyquote.fragment.CustomerData" type="XML"/>
+					</IconTabFilter >
+					<IconTabFilter icon="sap-icon://email" key="key3">
+						<core:Fragment fragmentName="zotc_easyquote.zotc_easyquote.fragment.QuoteVersions" type="XML"/>
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://activate" key="key4" enabled="{= ${globalModel>/quotationSelected/CustomerId} !== ''}"
+						visible="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}">
+						<core:Fragment fragmentName="zotc_easyquote.zotc_easyquote.fragment.Materials" type="XML"/>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+		<footer>
+			<OverflowToolbar width="100%" design="Auto" enabled="true" visible="true">
+				<content>
+					<Button icon="sap-icon://home" press="navToHome" text="{i18n>home}"></Button>
+					<ToolbarSpacer width=""/>
+					<Button text="{i18n>saveNewVersion}" class="sapUiTinyMarginEnd" press="pressSaveNewVersion"
+						visible="{= !${globalModel>/createMode} &amp;&amp; ${globalModel>/quotationSelected/SapQuotationNo} === ''}"></Button>
+					<Button text="{i18n>save}" class="sapUiTinyMarginEnd" press="pressSave"></Button>
+				</content>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

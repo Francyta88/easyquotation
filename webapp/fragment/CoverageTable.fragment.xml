@@ -1,0 +1,53 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:ff="sap.f">
+	<Dialog horizontalScrolling="false" showHeader="true" state="None" stretch="true" title="{i18n>CTFtitle}" type="Standard"
+		verticalScrolling="true" class="sapUiResponsiveContentPadding">
+		<content>
+			<Table itemPress="onCoverageSelection" width="auto" items="{ path: 'globalModel>/metalsInfo/currentCoverage'}" growing="true" growingScrollToLoad="true"
+				mode="SingleSelectMaster">
+				<columns>
+					<Column>
+						<Text text="{i18n>CTFcustomerCode}"/>
+					</Column>
+					<Column >
+						<Text text="{i18n>CTFcoverageId}"/>
+					</Column>
+					<Column demandPopin="true" minScreenWidth="Tablet">
+						<Text text="{i18n>CTFvalidFrom}"/>
+					</Column>
+					<Column demandPopin="true" minScreenWidth="Tablet">
+						<Text text="{i18n>CTFvalidTo}"/>
+					</Column>
+					<Column demandPopin="true" minScreenWidth="Tablet">
+						<Text text="{i18n>CTFtotal}"/>
+					</Column>
+					<Column demandPopin="true" minScreenWidth="Tablet">
+						<Text text="{i18n>CTFused}"/>
+					</Column>
+					<Column demandPopin="true" minScreenWidth="Tablet">
+						<Text text="{i18n>CTFleft}"/>
+					</Column>
+					<Column demandPopin="true" minScreenWidth="Tablet">
+						<Text text="{i18n>CTFrate}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation" press="onPress">
+						<cells>
+							<Text text="{globalModel>Parnr}"/>
+							<Text text="{globalModel>Eds}"/>
+							<Text text="{path: 'globalModel>Ste', formatter: '.formatter.formatDate'}"/>
+							<Text text="{path: 'globalModel>Gbd', formatter: '.formatter.formatDate'}"/>
+							<Text text="{globalModel>Edb}"/>
+							<Text text="{globalModel>Aub}"/>
+							<Text text="{globalModel>Left}"/>
+							<Text text="{globalModel>Efk}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<buttons>
+			<Button icon="sap-icon://decline" text="{i18n>CTFclose}" press="oncloseCoverageTable"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

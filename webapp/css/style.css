@@ -1,0 +1,89 @@
+/* Enter your custom styles here */
+
+.sapMMessageToastSuccess {
+    color: #4F8A10 !important;
+    background-color: #DFF2BF !important;
+    font-weight: bold;
+}
+
+.sapMMessageToastWarning {
+    color: #9F6000 !important;
+    background-color: #FEEFB3 !important;
+    font-weight: bold;
+}
+
+.sapMMessageToastError {
+    color: #D8000C !important;
+    background-color: #FFD2D2 !important;
+    font-weight: bold;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.headerSizeQuotation {
+    font-size: 20px;
+}
+
+.headerSizeNumber {
+    font-size: 16px;
+}
+
+.positionEnd {
+    text-align: end !important;
+}
+
+.positionEndCart {
+    justify-content: flex-end !important;
+}
+
+.numberCart {
+    margin: auto !important;
+    min-width: 8px !important;
+    border-radius: 13px !important;
+    background-color: #30d173 !important;
+    /* bordeaux #b71639 !important; */
+    text-align: center !important;
+    background: #30d173 !important;
+    /* bordeaux #b71639 !important; */
+    display: inline-block !important;
+    right: 0 !important;
+    top: -3px !important;
+    z-index: 2 !important;
+    font: bold 11px Arial !important;
+    color: #fff !important;
+    padding: 2px 4px !important;
+    border: 1px solid #fff !important;
+}
+
+.sapUiTableDataCell>.sapUiTableCellInner,
+.sapUiTableCreationRow .sapUiTableCreationRowForm .sapUiTableCell>.sapUiTableCellInner {
+    padding: 0rem !important;
+}
+
+.customCell {
+    height: 2.7rem !important;
+    margin: 0rem 0 !important;
+}
+
+.marginUploadFile {
+    margin-top: 0.15rem !important
+}
+
+
+/* .sapUiRespGridMedia-Std-Desktop.sapUiFormResGridCont>.sapUiFormElementLbl:not(.sapUiRespGridSpanL12)  {*/
+
+
+/*    padding-top: 0rem !important;*/
+
+
+/*}*/
+
+.paddingSimpleForm {
+    padding-top: 1rem !important
+}
+
+.paddingSimpleFormTwoRows {
+    padding-top: 0.3rem !important
+}

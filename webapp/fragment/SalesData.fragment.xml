@@ -1,0 +1,155 @@
+<!--TAB 1-->
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:ff="sap.f"
+	xmlns:cards="sap.f.cards">
+	<VBox class="sapUiSmallMargin">
+		<ff:Card class="sapUiSmallMarginRigth">
+			<ff:content>
+				<f:SimpleForm id="SimpleFormSalesData" editable="true" layout="ResponsiveGridLayout" labelSpanXL="2" labelSpanL="2" labelSpanM="12"
+					labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="0" columnsL="0" columnsM="0"
+					singleContainerFullSize="true" ariaLabelledBy="Title1">
+					<f:content>
+						<Label text="*{i18n>projectName}"/>
+						<Input value="{globalModel>/quotationSelected/QuotationName}" valueStateText="{i18n>REQUIREDprojectName}" id="ProjectNameId"
+							change="changeProjectName" maxLength="255" editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}"/>
+						<Label text="*{i18n>titlePO}"/>
+						<Input value="{globalModel>/quotationSelected/Title}" valueStateText="{i18n>REQUIREDtitlePo}" id="TitlePoId" change="changeTitlePo"
+							maxLength="255" editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}"/>
+						<Label text="{i18n>tag}"/>
+						<Input value="{globalModel>/quotationSelected/Tag}" editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}"/>
+						<Label text="*{i18n>salesManagerUsername}"/>
+						<Select selectedKey="{globalModel>/quotationSelected/SalesOffice} | {globalModel>/quotationSelected/SalesGroup}" change="changeSalesManager"
+							items="{path:'globalModel>/salesGroups', templateShareable:true, length: 999999, sorter: {path: 'SalesPersonName'}}"
+							editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}">
+							<items>
+								<core:Item text="{globalModel>SalesPersonName}" key="{globalModel>SalesOffice} | {globalModel>SalesGroup}"/>
+							</items>
+						</Select>
+						<Input value="{globalModel>/quotationSelected/Bname}" editable="false"></Input>
+						<Label text="*{i18n>quotationDate}"/>
+						<DatePicker change="changeQuotationDate" id="QuotationDateId"
+							value="{path: 'globalModel>/quotationSelected/QuotationDate', formatter: '.formatter.formatDataSalesPage'}"
+							valueFormat="yyyy-MM-ddTHH:mm:ss" displayFormat="dd MMM, yyyy" valueState="None"
+							editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}"/>
+						<Label text="*{i18n>quotationValid}"/>
+						<DatePicker change="changeQuotationValid" id="QuotationDateValidId"
+							value="{path: 'globalModel>/quotationSelected/QuotationValid', formatter: '.formatter.formatDataSalesPage'}"
+							valueFormat="yyyy-MM-ddTHH:mm:ss" displayFormat="dd MMM, yyyy" valueState="None"
+							editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}"/>
+						<Label text="{i18n>currency}"></Label>
+						<Input value="{globalModel>/userInfo/currency}" editable="false">
+							<layoutData>
+								<l:GridData span="XL1 L1 M2 S3"/>
+							</layoutData>
+						</Input>
+						<Select items="{path:'globalModel>/currencies', length: 999999, sorter: {path: 'CurrCode'}}" selectedKey="{viewState>/selCurrencyCode}"
+							change="changeCurrency" editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}">
+							<core:Item key="{globalModel>CurrCode}" text="{globalModel>CurrCode} {globalModel>CurrName}"/>
+							<layoutData>
+								<l:GridData span="XL4 L4 M10 S9"/>
+							</layoutData>
+						</Select>
+						<!--<ComboBox >-->
+						<!--	<layoutData>-->
+						<!--		<l:GridData span="XL4 L4 M10 S9"/>-->
+						<!--	</layoutData>-->
+						<!--</ComboBox>-->
+						<Input value="{viewState>/valueCurrency}" editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}">
+							<layoutData>
+								<l:GridData span="XL4 L4 M11 S10"/>
+							</layoutData>
+						</Input>
+						<Button icon="sap-icon://synchronize" enabled="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}">
+							<layoutData>
+								<l:GridData span="XL1 L1 M1 S2"/>
+							</layoutData>
+						</Button>
+						<!--<Label text="{i18n>salesManagerNotes}"></Label>-->
+						<!--<Input value="{}"></Input>-->
+						<Label text="*{i18n>quotationStatus}"></Label>
+						<Select width="100%" selectedKey="{globalModel>/quotationSelected/Status}" valueStateText="{i18n>REQUIREDstatus}" change="changeStatus"
+							id="StatusId">
+							<core:Item key="Draft" text="{i18n>draft}" enabled="false"/>
+							<core:Item key="Open" text="{i18n>open}" enabled="false"/>
+							<core:Item key="ApprovalNeeded" text="{i18n>approvalNeeded}" enabled="false"/>
+							<core:Item key="NotApproved" text="{i18n>notApproved}" enabled="false"/>
+							<core:Item key="Rejected" text="{i18n>rejected}" enabled="false"/>
+							<core:Item key="Approved" text="{i18n>approved}" enabled="false"/>
+							<core:Item key="SentToCustomer" text="{i18n>sentToCustomer}" enabled="false"/>
+							<core:Item key="SentToSap" text="{i18n>sentToSap}" enabled="{= ${globalModel>/quotationSelected/SapQuotationNo} !== ''}"/>
+							<core:Item key="AcceptedByCustomer" text="{i18n>acceptedByCustomer}" enabled="false"/>
+							<core:Item key="RejectedByCustomer" text="{i18n>rejectedByCustomer}" enabled="false"/>
+							<core:Item key="Lost" text="{i18n>lost}" enabled="{= ${globalModel>/quotationSelected/SapQuotationNo} !== ''}"/>
+							<core:Item key="Closed" text="{i18n>closed}" enabled="{= ${globalModel>/quotationSelected/SapQuotationNo} !== ''}"/>
+						</Select>
+						<!--<Select items="{path:'globalModel>/statusList', length: 999999, sorter: {path: 'value'}}" valueStateText="{i18n>REQUIREDstatus}"-->
+						<!--	selectedKey="{globalModel>/quotationSelected/Status}" change="changeStatus" id="StatusId">-->
+						<!--	<items>-->
+						<!--		<core:ListItem text="{globalModel>value}" enabled="true" key="{globalModel>key}"></core:ListItem>-->
+						<!--	</items>-->
+						<!--</Select>-->
+						<Label text="{i18n>extendedText}"></Label>
+						<Select items="{path:'customExtendedTexts>/', length: 999999, sorter: {path: 'Tdtext'}}" selectedKey="{viewState>/selExtendedTextCode}"
+							change="changeExtendedText" id="extendedText">
+							<items>
+								<core:ListItem text="{customExtendedTexts>Tdtext}" enabled="true" key="{customExtendedTexts>Tdid}"
+									icon="{path: 'customExtendedTexts>Tdid', formatter: '.formatter.iconExtendedText'}"></core:ListItem>
+							</items>
+							<layoutData>
+								<l:GridData span="XL10 L10 M12 S12"/>
+							</layoutData>
+						</Select>
+						<!--<Button icon="sap-icon://add" press="openCreateCountrySpecificText">-->
+						<!--	<layoutData>-->
+						<!--		<l:GridData span="XL1 L1 M1 S2"/>-->
+						<!--	</layoutData>-->
+						<!--</Button>-->
+						<!--<Button icon="sap-icon://edit" press="openEditCountrySpecificText">-->
+						<!--	<layoutData>-->
+						<!--		<l:GridData span="XL1 L1 M1 S2"/>-->
+						<!--	</layoutData>-->
+						<!--</Button>-->
+						<Label text="{i18n>contentText}"></Label>
+						<TextArea value="{viewState>/selContentText}" change="changeContentText"
+							editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}"></TextArea>
+						<!--<Label text="{i18n>quotationLanguage}"></Label>-->
+						<!--<ComboBox ></ComboBox>-->
+						<!--<Label text="{i18n>countrySpecificText}"></Label>-->
+						<!--<ComboBox >-->
+						<!--	<layoutData>-->
+						<!--		<l:GridData span="XL8 L8 M10 S12"/>-->
+						<!--	</layoutData>-->
+						<!--</ComboBox>-->
+						<!--<Button icon="sap-icon://add" press="openCreateCountrySpecificText">-->
+						<!--	<layoutData>-->
+						<!--		<l:GridData span="XL1 L1 M1 S2"/>-->
+						<!--	</layoutData>-->
+						<!--</Button>-->
+						<!--<Button icon="sap-icon://edit" press="openEditCountrySpecificText">-->
+						<!--	<layoutData>-->
+						<!--		<l:GridData span="XL1 L1 M1 S2"/>-->
+						<!--	</layoutData>-->
+						<!--</Button>-->
+						<!--<Label text="{i18n>userSpecificText}"></Label>-->
+						<!--<ComboBox>-->
+						<!--	<layoutData>-->
+						<!--		<l:GridData span="XL8 L8 M10 S12"/>-->
+						<!--	</layoutData>-->
+						<!--</ComboBox>-->
+						<!--<Button icon="sap-icon://add" press="openCreateUserSpecificText">-->
+						<!--	<layoutData>-->
+						<!--		<l:GridData span="XL1 L1 M1 S2"/>-->
+						<!--	</layoutData>-->
+						<!--</Button>-->
+						<!--<Button icon="sap-icon://edit" press="openEditUserSpecificText">-->
+						<!--	<layoutData>-->
+						<!--		<l:GridData span="XL1 L1 M1 S2"/>-->
+						<!--	</layoutData>-->
+						<!--</Button>-->
+						<!--<Label text="{i18n>headerText}"></Label>-->
+						<!--<TextArea ></TextArea>-->
+					</f:content>
+				</f:SimpleForm>
+			</ff:content>
+		</ff:Card>
+	</VBox>
+</core:FragmentDefinition>

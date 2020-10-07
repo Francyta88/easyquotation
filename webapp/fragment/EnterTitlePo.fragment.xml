@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:ff="sap.f">
+	<Dialog horizontalScrolling="false" showHeader="true" state="None" stretch="false" title="{i18n>addTitleEnterTitlePo}" type="Standard"
+		verticalScrolling="true" class="sapUiResponsiveContentPadding" contentHeight="25%" contentWidth="40%">
+		<content>
+				<VBox class="sapUiMediumMargin">
+			<Label text="{i18n>titlePoEnterTitlePo}:"></Label>
+			<Input value="{viewState>/newTitlePO}" id="TitlePoEnterTitlePo" valueStateText="{i18n>REQUIREDtitlePo}"></Input>
+			</VBox>
+		</content>
+		<buttons>
+			<Button icon="sap-icon://save" text="{i18n>saveEnterTitlePo}" press="addEnterTitlePo"/>
+			<Button icon="sap-icon://decline" text="{i18n>closeEnterTitlePo}" press="closeEnterTitlePo"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,30 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:ff="sap.f">
+	<Dialog horizontalScrolling="false" showHeader="true" state="None" stretch="false" title="{i18n>CMFtitle}" type="Standard"
+		verticalScrolling="true" class="sapUiResponsiveContentPadding" contentHeight="50%" contentWidth="30%">
+		<content>
+			<f:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" editable="false" layout="ResponsiveGridLayout" labelSpanM="3">
+				<f:content>
+					<Label text="{i18n>CMFitems}"></Label>
+					<Input enabled="false" value="{globalModel>/contributionMargin/selectedItems}"></Input>
+					<Label text="{i18n>CMFperc}"></Label>
+					<Input value="{globalModel>/contributionMargin/Percentage}"></Input>
+					<Label text="{i18n>CMFcondType}" />
+					<Select items="{path: 'globalModel>/contributionMargin/condList'}" class="zSelectWidth" selectedKey="{globalModel>/contributionMargin/SelectedCondType}"
+					change="onListSelect">
+						<items>
+							<core:ListItem text="{globalModel>Kschl}" key="{globalModel>Kschl}"/>
+						</items>
+					</Select>
+					<Label text="{i18n>CMFpriceUnit}"></Label>
+					<Input value="{globalModel>/contributionMargin/Kpein}"></Input>
+					<Label text="{i18n>CMFcondUnit}"></Label>
+					<Input value="{globalModel>/contributionMargin/Kmein}"></Input>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<buttons>
+			<Button icon="sap-icon://waiver" text="{i18n>CMFcalculate}" press="onCalculateCM"/>
+			<Button icon="sap-icon://decline" text="{i18n>CMFclose}" press="oncloseCM"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

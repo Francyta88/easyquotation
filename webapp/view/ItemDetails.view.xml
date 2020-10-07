@@ -1,0 +1,435 @@
+<mvc:View controllerName="zotc_easyquote.zotc_easyquote.controller.ItemDetails" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:table="sap.ui.table" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" height="100%" displayBlock="true"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:f="sap.ui.layout.form">
+	<Page showFooter="true" showHeader="false" showNavButton="true">
+		<content>
+			<Panel expandable="true" expanded="true" width="auto" class="sapUiResponsiveMargin">
+				<headerToolbar>
+					<Toolbar height="3rem">
+						<Title text="{i18n>IDVitemDetails}"/>
+						<ToolbarSpacer/>
+					</Toolbar>
+				</headerToolbar>
+				<content>
+					<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" labelSpanS="6" adjustLabelSpan="True"
+						emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsL="1" columnsM="1" singleContainerFullSize="false">
+						<f:content>
+							<Label text="{i18n>IDVcode}" class="blueTextForm">
+								<layoutData>
+									<l:GridData span="L1 M12 S12"/>
+								</layoutData>
+							</Label>
+							<Input editable="false" value="{path: 'globalModel>/selectedMaterial/Matnr', formatter: '.formatter.deleteZeros'}">
+								<layoutData>
+									<l:GridData span="L3 M12 S12"/>
+								</layoutData>
+							</Input>
+							<Label text="{i18n>IDVdescription}" class="blueTextForm">
+								<layoutData>
+									<l:GridData span="L1 M12 S12"/>
+								</layoutData>
+							</Label>
+							<Input editable="false" value="{globalModel>/selectedMaterial/Maktx}">
+								<layoutData>
+									<l:GridData span="L7 M12 S12"/>
+								</layoutData>
+							</Input>
+						</f:content>
+					</f:SimpleForm>
+					<f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" labelSpanS="6" adjustLabelSpan="True"
+						emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsL="1" columnsM="1" singleContainerFullSize="false">
+						<f:content xmlns:sap.ui.layout.form="sap.ui.layout.form">
+							<Label text="{i18n>IDVfactor}" class="paddingSimpleForm">
+								<layoutData>
+									<l:GridData span="L1 M12 S12"/>
+								</layoutData>
+							</Label>
+							<Input type="Number" width="100%" value="{globalModel>/selectedMaterial/Factor}"
+								editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}">
+								<layoutData>
+									<l:GridData span="L3 M12 S12"/>
+								</layoutData>
+							</Input>
+							<Label text="{i18n>IDVindividualLength}" class="paddingSimpleFormTwoRows">
+								<layoutData>
+									<l:GridData span="L1 M12 S12"/>
+								</layoutData>
+							</Label>
+							<Input type="Number" value="" editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}">
+								<layoutData>
+									<l:GridData span="L3 M12 S12"/>
+								</layoutData>
+							</Input>
+							<Label text="{i18n>IDVunitOfMeasure}" class="paddingSimpleForm">
+								<layoutData>
+									<l:GridData span="L1 M12 S12"/>
+								</layoutData>
+							</Label>
+							<Select items="{path: 'globalModel>/uomList'}" class="zSelectWidth" selectedKey="{globalModel>/selectedMaterial/Vrkme}"
+								editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}">
+								<items>
+									<core:ListItem text="{globalModel>key} - {globalModel>value}" key="{globalModel>key}"/>
+								</items>
+								<layoutData>
+									<l:GridData span="L3 M12 S12"/>
+								</layoutData>
+							</Select>
+						</f:content>
+					</f:SimpleForm>
+					<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="1" labelSpanL="1" labelSpanM="12" labelSpanS="12"
+						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="0" columnsL="0" columnsM="0"
+						singleContainerFullSize="true">
+						<f:content xmlns:sap.ui.layout.form="sap.ui.layout.form">
+							<Label text="{i18n>IDVlength}" class="blueTextForm"/>
+							<Input type="Number" width="100%" value="{globalModel>/selectedMaterial/IndividualLength}"
+								editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}">
+								<layoutData>
+									<l:GridData span="XL8 L8 M9 S12"/>
+								</layoutData>
+							</Input>
+							<Button icon="sap-icon://bbyd-active-sales" press="onShowChars" text="{i18n>IDVshowChars}">
+								<layoutData>
+									<l:GridData span="XL3 L3 M3 S6"/>
+								</layoutData>
+							</Button>
+						</f:content>
+					</f:SimpleForm>
+					<Table width="auto" items="{ path: 'globalModel>/selectedMaterial/Chars'}" growing="true" growingScrollToLoad="true">
+						<headerToolbar>
+							<OverflowToolbar>
+								<Title text="{i18n>IDVcharTableTitle}" level="H2"/>
+							</OverflowToolbar>
+						</headerToolbar>
+						<columns>
+							<Column>
+								<Text text="{i18n>MCFcharName}"/>
+							</Column>
+							<Column >
+								<Text text="{i18n>MCFcharValue}"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem visible="{= ${globalModel>ShowItemDetailsTable} === true}">
+								<cells>
+									<Text text="{globalModel>DescrChar}"/>
+									<Text text="{globalModel>CharValue} {globalModel>DescrCval}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Panel>
+			<Panel id="itemDetailsAvailability" expandable="true" expanded="{viewState>/availabilityExpanded}" width="auto"
+				class="sapUiResponsiveMargin">
+				<headerToolbar>
+					<Toolbar height="3rem">
+						<Title text="{i18n>IDVavailability}"/>
+						<ObjectNumber number="{globalModel>/selectedMaterial/FreeStock}" unit="{globalModel>/selectedMaterial/Vrkme}"/>
+						<ToolbarSpacer/>
+					</Toolbar>
+				</headerToolbar>
+				<content>
+					<f:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanXL="1" labelSpanL="1" labelSpanM="12" labelSpanS="12"
+						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="0" columnsL="0" columnsM="0"
+						singleContainerFullSize="true">
+						<sap.ui.layout.form:content xmlns:sap.ui.layout.form="sap.ui.layout.form">
+							<Label text="{i18n>IDVavailabilityStatus}" class="paddingSimpleFormTwoRows">
+								<layoutData>
+									<l:GridData span="L1 M12 S12"/>
+								</layoutData>
+							</Label>
+							<Input editable="false" value="{path: 'globalModel>/selectedMaterial/Availability', formatter: '.formatter.availabilityFormatter'}">
+								<layoutData>
+									<l:GridData span="L11 M12 S12"/>
+								</layoutData>
+							</Input>
+						</sap.ui.layout.form:content>
+					</f:SimpleForm>
+					<Table width="auto" items="{globalModel>/selectedMaterial/Stock}" growing="true" growingScrollToLoad="true">
+						<columns>
+							<Column>
+								<Text text="{i18n>IDVlocation}"/>
+							</Column>
+							<Column >
+								<Text text="{i18n>IDVlength}"/>
+							</Column>
+							<Column>
+								<Text text="{i18n>IDVstockCategory}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="{i18n>IDVtotalStock}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="{i18n>IDVpeggedStock}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="{i18n>IDVfreeStock}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="{i18n>IDVotherReceipts}"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{globalModel>Location}"/>
+									<Text text="{globalModel>Length}"/>
+									<Text text="{globalModel>StockCategory}"/>
+									<Text text="{globalModel>TotalStock}"/>
+									<Text text="{globalModel>PeggStock}"/>
+									<Text text="{globalModel>FreeStock}"/>
+									<Text text="{globalModel>OtherReceipt}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Panel>
+			<Panel id="itemDetailsPrice" expandable="true" expanded="{viewState>/priceExpanded}" width="auto" class="sapUiResponsiveMargin">
+				<headerToolbar>
+					<Toolbar height="3rem">
+						<!--	<Title text="{i18n>pricing}"/>
+						<ObjectNumber number="{global>/selectedMaterial/priceOnUnit}" unit="{global>/selectedMaterial/currency}"/>
+						<Label text="/"></Label>
+						<ObjectNumber number="{global>/selectedMaterial/priceOnUnitLength}" unit="{global>/selectedMaterial/priceOnUnitMeasure}"/>
+						<ToolbarSpacer/> -->
+						<Title text="{i18n>IDVinvoice}"/>
+						<ObjectNumber number="{globalModel>/selectedMaterial/Netwr}" unit="{globalModel>/selectedMaterial/Waerk}"/>
+						<ToolbarSpacer/>
+						<Button icon="sap-icon://synchronize" press="onGetPricing" text="{i18n>IDVrefresh}"
+							visible="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}"/>
+					</Toolbar>
+				</headerToolbar>
+				<content>
+					<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanL="4" labelSpanM="4" labelSpanS="6" adjustLabelSpan="True"
+						emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsL="1" columnsM="1" singleContainerFullSize="false"
+						visible="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}">
+						<f:content>
+							<Label text="{i18n>IDVmanualConds}" class="blueTextForm">
+								<layoutData>
+									<l:GridData span="L1 M12 S12"/>
+								</layoutData>
+							</Label>
+							<Select items="{path: 'globalModel>/manualConditions'}" class="zSelectWidth" selectedKey="{globalModel>/selectedManualCond/Kschl}"
+								change="onListSelect">
+								<items>
+									<core:ListItem text="{globalModel>Kschl} - {globalModel>Vtext}" key="{globalModel>Kschl}"/>
+								</items>
+								<layoutData>
+									<l:GridData span="L3 M12 S12"/>
+								</layoutData>
+							</Select>
+							<Label text="{i18n>IDVprice}" class="blueTextForm">
+								<layoutData>
+									<l:GridData span="L1 M12 S12"/>
+								</layoutData>
+							</Label>
+							<Input enabled="true" value="{path: 'globalModel>/selectedManualCond/Kwert'}" placeholder="{globalModel>/selectedMaterial/Currency}">
+								<layoutData>
+									<l:GridData span="L2 M12 S12"/>
+								</layoutData>
+							</Input>
+							<Label text="{i18n>IDVqty}" class="blueTextForm">
+								<layoutData>
+									<l:GridData span="L1 M12 S12"/>
+								</layoutData>
+							</Label>
+							<Input enabled="true" value="{path: 'globalModel>/selectedManualCond/Kpein'}" placeholder="{globalModel>/selectedMaterial/Meins}">
+								<layoutData>
+									<l:GridData span="L2 M9 S12"/>
+								</layoutData>
+							</Input>
+							<Button text="Add" icon="sap-icon://sys-add" press="onAddToConditions">
+								<layoutData>
+									<l:GridData span="L2 M3 S12"/>
+								</layoutData>
+							</Button>
+						</f:content>
+					</f:SimpleForm>
+					<!--<f:SimpleForm layout="ResponsiveGridLayout" labelSpanXL="2" labelSpanL="2" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false"-->
+					<!--	columnsXL="3" columnsL="3" columnsM="2" singleContainerFullSize="true" class="customFormCoreTile">-->
+					<!--	<f:content xmlns:sap.ui.layout.form="sap.ui.layout.form">-->
+					<!--		<core:Title text=""/>-->
+					<!--		<Label text="{i18n>IDVmanualConds}" class="blueTextForm"/>-->
+					<!--		<Select items="{path: 'globalModel>/manualConditions'}" class="zSelectWidth" selectedKey="{globalModel>/selectedManualCond/Kschl}"-->
+					<!--			change="onListSelect">-->
+					<!--			<items>-->
+					<!--				<core:ListItem text="{globalModel>Kschl} - {globalModel>Vtext}" key="{globalModel>Kschl}"/>-->
+					<!--			</items>-->
+					<!--		</Select>-->
+					<!--		<core:Title text=""/>-->
+					<!--		<Label text="{i18n>IDVprice}" class="blueTextForm"/>-->
+					<!--		<Input enabled="true" value="{path: 'globalModel>/selectedManualCond/Kwert'}" placeholder="{globalModel>/selectedMaterial/Currency}"></Input>-->
+					<!--		<core:Title text=""/>-->
+					<!--		<Label text="{i18n>IDVqty}" class="blueTextForm"/>-->
+					<!--		<Input enabled="true" value="{path: 'globalModel>/selectedManualCond/Kpein'}" placeholder="{globalModel>/selectedMaterial/Meins}"></Input>-->
+					<!--		<Button text="Add" icon="sap-icon://sys-add" press="onAddToConditions"></Button>-->
+					<!--	</f:content>-->
+					<!--</f:SimpleForm>-->
+					<Table width="auto" items="{globalModel>/selectedMaterial/Pricing}" growing="true" growingScrollToLoad="true">
+						<columns>
+							<Column width="8%"></Column>
+							<Column>
+								<Text text="{i18n>IDVcondition}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="{i18n>IDVconditionText}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="{i18n>IDVamount}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="{i18n>IDVper}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="{i18n>IDVval}"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem visible="{= ${globalModel>Show} === true}">
+								<cells>
+									<Button icon="sap-icon://delete" visible="{globalModel>Manual}" press="onDeleteCondition"
+										enabled="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}"/>
+									<Text text="{globalModel>Kschl}"/>
+									<Text text="{globalModel>Text}"/>
+									<ObjectNumber number="{globalModel>Kwert}" unit="{globalModel>Waers}"/>
+									<ObjectNumber number="{globalModel>Kpein}" unit="{globalModel>Kmein}"/>
+									<ObjectNumber number="{globalModel>Kbetr}" unit="{globalModel>Kwaeh}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Panel>
+			<Panel id="itemDetailsMetals" expandable="true" expanded="{viewState>/metalsExpanded}" width="auto" class="sapUiResponsiveMargin">
+				<headerToolbar>
+					<Toolbar height="3rem">
+						<Title text="{i18n>IDVmetals}"/>
+					</Toolbar>
+				</headerToolbar>
+				<content>
+					<Table width="auto" items="{globalModel>/metalsInfo/itemMetals}" growing="true" growingScrollToLoad="true">
+						<columns>
+							<Column demandPopin="true">
+								<Text text="{i18n>IDVnfk}"/>
+							</Column>
+							<Column demandPopin="true">
+								<Text text="{i18n>IDVnfktext}"/>
+							</Column>
+							<Column demandPopin="true">
+								<Text text="{i18n>IDVrdk}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Small">
+								<Text text="{i18n>IDVbase}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Small">
+								<Text text="{i18n>IDVexc}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Desktop">
+								<Text text="{i18n>IDVkeyDate}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Desktop">
+								<Text text="{i18n>IDVmonth}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Desktop">
+								<Text text="{i18n>IDVbl}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="{i18n>IDVrateOf}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="{i18n>IDVrate}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="{i18n>IDVbaseValue}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="{i18n>IDVnetRate}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="{i18n>IDVprovider}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Desktop" width="12%">
+								<Text text="{i18n>IDVcoverage}"/>
+							</Column>
+							<!--<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="{i18n>IDVdays}"/>
+							</Column>-->
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{globalModel>Nes}"/>
+									<Text text="{globalModel>Txt}"/>
+									<Select items="{path: 'globalModel>/metalsInfo/customizingTab'}" showSecondaryValues="true" change="onChangeCustomizing"
+										selectedKey="{globalModel>/metalsInfo/selectedCustomKey}" editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}">
+										<items>
+											<core:ListItem text="{globalModel>Nfs}" key="{globalModel>Nfs}" additionalText="{globalModel>Txt}"/>
+										</items>
+									</Select>
+									<HBox alignItems="Center">
+										<Button icon="sap-icon://search" press="onBasePress" enabled="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}"/>
+										<Label text="{globalModel>Neb}"/>
+									</HBox>
+									<Text text="{path: 'globalModel>Bsl', formatter: '.formatter.formatDate'}"/>
+									<Text text="{path: 'globalModel>Ndt', formatter: '.formatter.formatDate'}"/>
+									<Text text="{globalModel>Nmo}"/>
+									<Text text="{globalModel>Fsp}"/>
+									<Text text="{path: 'globalModel>Kta', formatter: '.formatter.formatDate'}"/>
+									<Text text="{globalModel>Nku}"/>
+									<Text text="{globalModel>Bwr}"/>
+									<Text text="{globalModel>NetRate}"/>
+									<Text text="{globalModel>Bek}"/>
+									<HBox alignItems="Center">
+										<Button icon="sap-icon://search" press="onCoveragePress" enabled="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}"/>
+										<Text text="{globalModel>Eind} - {globalModel>Eds}" wrapping="true" class="zwrap"/>
+									</HBox>
+									<!--<Text text="{globalModel>Nbd}"/>-->
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Panel>
+			<Panel id="itemDetailsTexts" expandable="true" expanded="{viewState>/textExpanded}" width="auto" class="sapUiResponsiveMargin">
+				<headerToolbar>
+					<Toolbar height="3rem">
+						<Title text="{i18n>IDVtexts}"/>
+					</Toolbar>
+				</headerToolbar>
+				<content>
+					<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="1" labelSpanL="1" labelSpanM="12" labelSpanS="12"
+						adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="0" columnsL="0" columnsM="0"
+						singleContainerFullSize="true" ariaLabelledBy="Title1">
+						<f:content xmlns:sap.ui.layout.form="sap.ui.layout.form">
+							<Label text="{i18n>IDVextendedText}"></Label>
+							<Select id="itemSelectText" items="{path:'globalModel>/selectedMaterial/CustomTexts', length: 999999, sorter: {path: 'Tdtext'}}"
+								class="zSelectWidth" selectedKey="{globalModel>/selectedMaterial/selExtendedTextCode}" change="changeExtendedText">
+								<items>
+									<core:ListItem text="{globalModel>Tdtext}" enabled="true" key="{globalModel>Tdid}"
+										icon="{path: 'globalModel>Tdid', formatter: '.formatter.iconItemExtendedText'}"></core:ListItem>
+								</items>
+							</Select>
+							<Label text="{i18n>IDVcontentText}"></Label>
+							<TextArea value="{globalModel>/selectedMaterial/selContentText}" change="changeContentText"
+								editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}"></TextArea>
+						</f:content>
+					</f:SimpleForm>
+				</content>
+			</Panel>
+		</content>
+		<footer>
+			<Bar>
+				<contentLeft>
+					<Label text="{globalModel>/vkorg} {globalModel>/vtweg} {globalModel>/werks}"></Label>
+				</contentLeft>
+				<contentRight>
+					<Button icon="sap-icon://sys-back-2" press="onNavBack" text="{i18n>IDVback}"/>
+					<Button icon="sap-icon://show" press="onShowExpert" text="{i18n>CARTexpert}" visible="{= ${globalModel>/expertMode} === false}"/>
+					<Button icon="sap-icon://hide" press="onHideExpert" text="{i18n>CARTexpert}" visible="{= ${globalModel>/expertMode} === true}"/>
+					<Button icon="sap-icon://cart-4" press="onAddToCart" text="{i18n>IDVaddToCart}" visible="{= ${globalModel>/addToCart} === true}"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>

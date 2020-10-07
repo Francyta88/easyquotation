@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout">
+	<Dialog horizontalScrolling="false" showHeader="true" state="None" stretch="false" title="{i18n>confirmYourAction}" type="Standard"
+		verticalScrolling="true" class="sapUiResponsiveContentPadding" contentHeight="30%" contentWidth="40%">
+		<content>
+			<l:VerticalLayout class="sapUiContentPadding" width="100%">
+				<l:content>
+					<FlexBox alignItems="Start" justifyContent="Start">
+						<items>
+							<Text text="{i18n>deleteContactPerson}:"></Text>
+						</items>
+					</FlexBox>
+					<Text
+						text="{viewState>/selRemoveContactPersonFirstName} {viewState>/selRemoveContactPersonLastName} {viewState>/selRemoveContactPersonPhone} {viewState>/selRemoveContactPersonEmail} ?"></Text>
+				</l:content>
+			</l:VerticalLayout>
+		</content>
+		<buttons>
+			<Button text="{i18n>ok}" press="removeConfirmEditContactPerson"/>
+			<Button text="{i18n>closeContactPerson}" press="closeConfirmEditContactPerson"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

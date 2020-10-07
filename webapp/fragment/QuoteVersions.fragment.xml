@@ -1,0 +1,32 @@
+<!--TAB 3-->
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:ff="sap.f"
+	xmlns:cards="sap.f.cards">
+	<VBox class="sapUiSmallMargin">
+		<ff:Card class="sapUiSmallMarginRigth">
+			<ff:content>
+				<List >
+					<CustomListItem type="Active" press="loadOlderVersion">
+						<HBox>
+							<core:Icon size="2rem" src="sap-icon://pdf-reader" color="red" press="onVersionPDF" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"/>
+							<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom prysmian_notification">
+								<Label text="HANNIAN001 10.11.2016 10:18:46" class="prysmian_date" renderWhitespace="true" wrapping="true" textAlign="Left"/>
+								<Label text='"Päring HEK Prysmian 161110" (563/1) SentToCustomer' renderWhitespace="true" wrapping="true" textAlign="Left"/>
+								<ObjectNumber number="27 870,54 " unit="EUR"/>
+							</VBox>
+						</HBox>
+					</CustomListItem>
+					<CustomListItem type="Active" press="loadOlderVersion">
+						<HBox>
+							<core:Icon size="2rem" src="sap-icon://pdf-reader" color="red" press="onVersionPDF" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"/>
+							<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom prysmian_notification">
+								<Text text="HANNIAN001 10.11.2016 10:18:46" renderWhitespace="true" wrapping="true" textAlign="Left"/>
+								<Label text='"Päring HEK Prysmian 161110" (563/1) SentToCustomer' renderWhitespace="true" wrapping="true" textAlign="Left"/>
+								<ObjectNumber number="27 870,54 " unit="EUR"/>
+							</VBox>
+						</HBox>
+					</CustomListItem>
+				</List>
+			</ff:content>
+		</ff:Card>
+	</VBox>
+</core:FragmentDefinition>

@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout">
+	<Dialog horizontalScrolling="false" showHeader="true" state="None" stretch="false" title="{i18n>editContactPerson}" type="Standard"
+		verticalScrolling="true" class="sapUiResponsiveContentPadding" contentHeight="50%" contentWidth="75%">
+		<content>
+			<List mode="Delete" delete="pressRemoveContactPerson" enableBusyIndicator="true" items="{path:'customCustomerContactPerson>/'}"
+				id="remContactPerson">
+				<StandardListItem
+					title="{customCustomerContactPerson>Contactpersonname1} {customCustomerContactPerson>Contactpersonname2} {customCustomerContactPerson>Contactpersonphone} {customCustomerContactPerson>Contactpersonemail}"
+					visible="{parts: [{path:'customCustomerContactPerson>Contactpersonfromsap'},{path:'customCustomerContactPerson>Deleted'}], formatter:'.formatter.formatEditContactPersonList'}"/>
+			</List>
+		</content>
+		<buttons>
+			<Button icon="sap-icon://decline" text="{i18n>closeContactPerson}" press="closeEditContactPerson"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

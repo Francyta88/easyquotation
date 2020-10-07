@@ -1,0 +1,289 @@
+<!--<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified">-->
+<!--	<Dialog horizontalScrolling="false" showHeader="true" state="None" stretch="false" title="{i18n>SMAadvancedSearch}" type="Standard"-->
+<!--		verticalScrolling="true" class="sapUiResponsiveContentPadding" contentHeight="70%" contentWidth="90%">-->
+<!--		<content>-->
+<!--			<Table items="{customSearchArea>/}" mode="MultiSelect" id="TableSearchMaterialArea" alternateRowColors="true"  contextualWidth="Auto">-->
+<!--				<headerToolbar>-->
+<!--					<OverflowToolbar>-->
+<!--						<ToolbarSpacer width=""/>-->
+<!--						<u:FileUploader id="FileUploaderId" sameFilenameAllowed="true" iconOnly="false" buttonOnly="true" fileType="XLSX,xlsx"-->
+<!--							icon="sap-icon://upload" iconFirst="true" style="Emphasized" change="onUploadSearchMaterialArea"/>-->
+<!--						<Button id="downloadButton" text="{i18n>SMAdownloadTemplate}" press="downloadTemplate"/>-->
+<!--						<Button icon="sap-icon://delete" press="deleteItemsSearchMaterialArea" text="{i18n>SMAdelete}"/>-->
+<!--					</OverflowToolbar>-->
+<!--				</headerToolbar>-->
+<!--				<columns>-->
+<!--					<Column  minScreenWidth="2000px" demandPopin="true" >-->
+<!--						<Text text="{i18n>SMAmaterialCode}"/>-->
+<!--					</Column>-->
+<!--					<Column width="auto" minScreenWidth="2000px" demandPopin="true">-->
+<!--						<Text text="{i18n>SMAcustomerMaterial}"/>-->
+<!--					</Column>-->
+<!--					<Column width="auto" minScreenWidth="2000px" demandPopin="true">-->
+<!--						<Text text="{i18n>SMAplant}"/>-->
+<!--					</Column>-->
+<!--					<Column width="auto" minScreenWidth="2000px" demandPopin="true">-->
+<!--						<Text text="{i18n>SMAfactor}"/>-->
+<!--					</Column>-->
+<!--					<Column width="auto" minScreenWidth="2000px" demandPopin="true">-->
+<!--						<Text text="{i18n>SMAlength}"/>-->
+<!--					</Column>-->
+<!--					<Column width="auto" minScreenWidth="2000px" demandPopin="true">-->
+<!--						<Text text="{i18n>SMAconditionType}"/>-->
+<!--					</Column>-->
+<!--					<Column width="auto" minScreenWidth="2000px" demandPopin="true">-->
+<!--						<Text text="{i18n>SMAamount}"/>-->
+<!--					</Column>-->
+<!--					<Column width="auto" minScreenWidth="2000px" demandPopin="true">-->
+<!--						<Text text="{i18n>SMAper}"/>-->
+<!--					</Column>-->
+<!--					<Column width="auto" minScreenWidth="2000px" demandPopin="true">-->
+<!--						<Text text="{i18n>SMAuom}"/>-->
+<!--					</Column>-->
+<!--					<Column width="auto" minScreenWidth="2000px" demandPopin="true">-->
+<!--						<Text text="{i18n>SMAcm}"/>-->
+<!--					</Column>-->
+<!--					<Column width="auto" minScreenWidth="2000px" demandPopin="true">-->
+<!--						<Text text="{i18n>SMArequestedDate}"/>-->
+<!--					</Column>-->
+<!--					<Column width="auto" minScreenWidth="2000px" demandPopin="true">-->
+<!--						<Text text="{i18n>SMAitemNumber}"/>-->
+<!--					</Column>-->
+<!--					<Column width="auto" minScreenWidth="2000px" demandPopin="true">-->
+<!--						<Text text="{i18n>SMAcustomerLength}"/>-->
+<!--					</Column>-->
+<!--				</columns>-->
+<!--				<items>-->
+<!--					<ColumnListItem type="Inactive">-->
+<!--						<cells>-->
+<!--							<Input value="{customSearchArea>Material}"/>-->
+<!--							<Input value="{customSearchArea>CustomerMaterial}"/>-->
+<!--							<Input value="{customSearchArea>Plant}"/>-->
+<!--							<Input value="{customSearchArea>Factor}"/>-->
+<!--							<Input value="{customSearchArea>Length}"/>-->
+<!--							<Input value="{customSearchArea>PriceCondition}"/>-->
+<!--							<Input value="{customSearchArea>ConditionValue}"/>-->
+<!--							<Input value="{customSearchArea>ConditionLength}"/>-->
+<!--							<Input value="{customSearchArea>MeasureUnit}"/>-->
+<!--							<Input value="{customSearchArea>Cm}"/>-->
+<!--							<Input value="{customSearchArea>RequestedDate}"/>-->
+<!--							<Input value="{customSearchArea>ItemNumber}"/>-->
+<!--							<Input value="{customSearchArea>ZCustLength}"/>-->
+<!--						</cells>-->
+<!--					</ColumnListItem>-->
+<!--				</items>-->
+<!--			</Table>-->
+<!--		</content>-->
+<!--		<buttons>-->
+<!--			<Button icon="sap-icon://search" text="{i18n>SMAsearch}" press="srchSearchMaterialArea"/>-->
+<!--			<Button icon="sap-icon://decline" text="{i18n>SMAcloseSearchMaterialArea}" press="closeSearchMaterialArea"/>-->
+<!--		</buttons>-->
+<!--	</Dialog>-->
+<!--</core:FragmentDefinition>-->
+<!--<core:FragmentDefinition xmlns:t="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns="sap.m"-->
+<!--	xmlns:c="zotc_easyquote.zotc_easyquote.control" controllerName="zotc_easyquote.zotc_easyquote.view.CopyPaste" height="100%">-->
+<!--	<Dialog horizontalScrolling="false" showHeader="true" state="None" stretch="false" title="{i18n>SMAadvancedSearch}" type="Standard"-->
+<!--		verticalScrolling="true" class="sapUiResponsiveContentPadding" contentHeight="70%" contentWidth="90%">-->
+<!--		<content>-->
+<!--			<c:CopyPasteTable id="TableSearchMaterialArea" rows="{customSearchArea>/}" selectionMode="MultiToggle" visibleRowCount="6" rowHeight="50%">-->
+<!--				<c:extension>-->
+<!--					<OverflowToolbar>-->
+<!--						<ToolbarSpacer/>-->
+<!--						<u:FileUploader id="FileUploaderId" sameFilenameAllowed="true" iconOnly="false" buttonOnly="true" fileType="XLSX,xlsx"-->
+<!--							icon="sap-icon://upload" iconFirst="true" style="Emphasized" change="onUploadSearchMaterialArea"/>-->
+<!--						<Button id="downloadButton" text="{i18n>SMAdownloadTemplate}" press="downloadTemplate"/>-->
+<!--						<Button icon="sap-icon://delete" press="deleteItemsSearchMaterialArea" text="{i18n>SMAdelete}"/>-->
+<!--					</OverflowToolbar>-->
+<!--				</c:extension>-->
+<!--				<c:columns>-->
+<!--					<t:Column width="9rem">-->
+<!--						<Label text="{i18n>SMAmaterialCode}"/>-->
+<!--						<t:template>-->
+<!--							<Input value="{customSearchArea>Material}"/>-->
+<!--						</t:template>-->
+<!--					</t:Column>-->
+<!--					<t:Column width="9rem">-->
+<!--						<Label text="{i18n>SMAcustomerMaterial}"/>-->
+<!--						<t:template>-->
+<!--							<Input value="{customSearchArea>CustomerMaterial}"/>-->
+<!--						</t:template>-->
+<!--					</t:Column>-->
+<!--					<t:Column width="9rem">-->
+<!--						<Label text="{i18n>SMAplant}"/>-->
+<!--						<t:template>-->
+<!--							<Input value="{customSearchArea>Plant}"/>-->
+<!--						</t:template>-->
+<!--					</t:Column>-->
+<!--					<t:Column width="9rem">-->
+<!--						<Label text="{i18n>SMAfactor}"/>-->
+<!--						<t:template>-->
+<!--							<Input value="{customSearchArea>Factor}"/>-->
+<!--						</t:template>-->
+<!--					</t:Column>-->
+<!--					<t:Column width="9rem">-->
+<!--						<Label text="{i18n>SMAlength}"/>-->
+<!--						<t:template>-->
+<!--							<Input value="{customSearchArea>Length}"/>-->
+<!--						</t:template>-->
+<!--					</t:Column>-->
+<!--					<t:Column width="9rem">-->
+<!--						<Label text="{i18n>SMAconditionType}"/>-->
+<!--						<t:template>-->
+<!--							<Input value="{customSearchArea>PriceCondition}"/>-->
+<!--						</t:template>-->
+<!--					</t:Column>-->
+<!--					<t:Column width="9rem">-->
+<!--						<Label text="{i18n>SMAamount}"/>-->
+<!--						<t:template>-->
+<!--							<Input value="{customSearchArea>ConditionValue}"/>-->
+<!--						</t:template>-->
+<!--					</t:Column>-->
+<!--					<t:Column width="9rem">-->
+<!--						<Label text="{i18n>SMAper}"/>-->
+<!--						<t:template>-->
+<!--							<Input value="{customSearchArea>ConditionLength}"/>-->
+<!--						</t:template>-->
+<!--					</t:Column>-->
+<!--					<t:Column width="9rem">-->
+<!--						<Label text="{i18n>SMAuom}"/>-->
+<!--						<t:template>-->
+<!--							<Input value="{customSearchArea>MeasureUnit}"/>-->
+<!--						</t:template>-->
+<!--					</t:Column>-->
+<!--					<t:Column width="9rem">-->
+<!--						<Label text="{i18n>SMAcm}"/>-->
+<!--						<t:template>-->
+<!--							<Input value="{customSearchArea>SMAcm}"/>-->
+<!--						</t:template>-->
+<!--					</t:Column>-->
+<!--					<t:Column width="9rem">-->
+<!--						<Label text="{i18n>SMArequestedDate}"/>-->
+<!--						<t:template>-->
+<!--							<Input value="{customSearchArea>RequestedDate}"/>-->
+<!--						</t:template>-->
+<!--					</t:Column>-->
+<!--					<t:Column width="9rem">-->
+<!--						<Label text="{i18n>SMAitemNumber}"/>-->
+<!--						<t:template>-->
+<!--							<Input value="{customSearchArea>ItemNumber}"/>-->
+<!--						</t:template>-->
+<!--					</t:Column>-->
+<!--					<t:Column width="9rem">-->
+<!--						<Label text="{i18n>SMAcustomerLength}"/>-->
+<!--						<t:template>-->
+<!--							<Input value="{customSearchArea>ZCustLength}"/>-->
+<!--						</t:template>-->
+<!--					</t:Column>-->
+<!--				</c:columns>-->
+<!--			</c:CopyPasteTable>-->
+<!--		</content>-->
+<!--	</Dialog>-->
+<!--</core:FragmentDefinition>-->
+<core:FragmentDefinition xmlns:t="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns="sap.m"
+	height="100%">
+	<Dialog horizontalScrolling="false" showHeader="true" state="None" stretch="false" title="{i18n>SMAfastEntry}" type="Standard"
+		verticalScrolling="true" class="sapUiResponsiveContentPadding" contentHeight="70%" contentWidth="90%">
+		<content>
+			<t:Table id="TableSearchMaterialArea" rows="{customSearchArea>/}" selectionMode="None" visibleRowCount="7" rowHeight="50%">
+				<t:extension>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+						<u:FileUploader buttonText="{i18n>SMAuploadFIle}" id="FileUploaderId" sameFilenameAllowed="true" iconOnly="false" buttonOnly="true"
+							fileType="XLSX,xlsx" icon="sap-icon://upload" iconFirst="true" style="Emphasized" change="onUploadSMA" class="marginUploadFile"/>
+						<Button id="downloadButton" text="{i18n>SMAdownloadTemplate}" press="downloadTemplate"/>
+					</OverflowToolbar>
+				</t:extension>
+				<t:columns>
+					<t:Column width="4rem" hAlign="Center">
+						<Label text=""/>
+						<t:template>
+							<Button icon="sap-icon://delete" press="deleteItemSMA"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem">
+						<Label text="{i18n>SMAmaterialCode}"/>
+						<t:template>
+							<Input value="{customSearchArea>Material}" class="customCell"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem">
+						<Label text="{i18n>SMAcustomerMaterial}"/>
+						<t:template>
+							<Input value="{customSearchArea>CustomerMaterial}" class="customCell"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem">
+						<Label text="{i18n>SMAplant}"/>
+						<t:template>
+							<Input value="{customSearchArea>Plant}" class="customCell"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem">
+						<Label text="{i18n>SMAfactor}"/>
+						<t:template>
+							<Input value="{customSearchArea>Factor}" class="customCell" type="Number"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem">
+						<Label text="{i18n>SMAlength}"/>
+						<t:template>
+							<Input value="{customSearchArea>Length}" class="customCell"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem">
+						<Label text="{i18n>SMAconditionType}"/>
+						<t:template>
+							<Input value="{customSearchArea>PriceCondition}" class="customCell"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem">
+						<Label text="{i18n>SMAamount}"/>
+						<t:template>
+							<Input value="{customSearchArea>ConditionValue}" class="customCell"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem">
+						<Label text="{i18n>SMAper}"/>
+						<t:template>
+							<Input value="{customSearchArea>ConditionLength}" class="customCell" type="Number"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem">
+						<Label text="{i18n>SMAuom}"/>
+						<t:template>
+							<Input value="{customSearchArea>MeasureUnit}" class="customCell"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem">
+						<Label text="{i18n>SMAcm}"/>
+						<t:template>
+							<Input value="{customSearchArea>Cm}" class="customCell"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem">
+						<Label text="{i18n>SMArequestedDate}"/>
+						<t:template>
+							<Input value="{customSearchArea>RequestedDate}" class="customCell"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem">
+						<Label text="{i18n>SMAitemNumber}"/>
+						<t:template>
+							<Input value="{customSearchArea>ItemNumber}" class="customCell" type="Number"/>
+						</t:template>
+					</t:Column>
+					<t:Column width="9rem">
+						<Label text="{i18n>SMAcustomerLength}"/>
+						<t:template>
+							<Input value="{customSearchArea>ZCustLength}" class="customCell"/>
+						</t:template>
+					</t:Column>
+				</t:columns>
+			</t:Table>
+		</content>
+		<buttons>
+			<Button icon="sap-icon://cart-4" text="{i18n>SMAaddToCart}" press="addcartSMA"/>
+			<Button icon="sap-icon://decline" text="{i18n>SMAcloseSearchMaterialArea}" press="closeSMA"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

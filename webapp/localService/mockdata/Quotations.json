@@ -1,0 +1,29 @@
+[{
+	"QuotationNo": "11909/b",
+	"QuotationName": "EVR Project",
+	"CustomerName": "AllSpark snc",
+	"Status": "sent to customer",
+	"QuotationDate": "10/01/2020",
+	"QuotationValid": "11/01/2020",
+	"NetValue": "3456789 (EUR)",
+	"SapQuotationNo": "11112334",
+	"Bname": "Luca Saccoccia",
+	"__metadata": {
+		"uri": "Quotation('Number%201')",
+		"type": "default.Quotation"
+	}
+}, {
+	"QuotationNo": "11911/c",
+	"QuotationName": "Kablid",
+	"CustomerName": "Reimax srl",
+	"Status": "approve req",
+	"QuotationDate": "15/01/2020",
+	"QuotationValid": "19/01/2020",
+	"NetValue": "11122345 (EUR)",
+	"SapQuotationNo": "111123707",
+	"Bname": "Luca Saccoccia",
+	"__metadata": {
+		"uri": "Quotation('Number%201')",
+		"type": "default.Quotation"
+	}
+}]

@@ -1,0 +1,109 @@
+<mvc:View controllerName="zotc_easyquote.zotc_easyquote.controller.Cart" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:table="sap.ui.table" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" height="100%" displayBlock="true"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:f="sap.ui.layout.form">
+	<Page showFooter="true" showHeader="false" showNavButton="true">
+		<content>
+			<HBox alignItems="Start" justifyContent="Start" backgroundDesign="Solid" class="sapUiContentPadding">
+				<items>
+					<HBox width="55%" alignItems="Start" justifyContent="Start" class="sapUiContentPadding">
+						<items>
+							<l:VerticalLayout width="100%">
+								<l:content class="sapUiResponsiveMargin">
+									<l:HorizontalLayout class="sapUiTinyMarginEnd">
+										<Text
+											text="{parts:[{path: 'globalModel>/headerInfo/headerInfoQuotationNo'}, {path: 'globalModel>/headerInfo/headerInfoQuotationVersion'}], formatter: '.formatter.formatHeaderQuotation'}"
+											class="sapUiSmallMarginTop sapUiTinyMarginBottom sapUiTinyMarginEnd bold headerSizeQuotation"></Text>
+										<Text text="({globalModel>/headerInfo/headerInfoQuotationSAP})" visible="{= ${globalModel>/headerInfo/headerInfoQuotationSAP} !== ''}"
+											class="sapUiSmallMarginTop sapUiTinyMarginBottom sapUiTinyMarginEnd bold headerSizeQuotation"></Text>
+									</l:HorizontalLayout>
+									<Text text="{i18n>titleQuotation}: {globalModel>/headerInfo/headerInfoQuotationTitle}"
+										visible="{= ${globalModel>/headerInfo/headerInfoQuotationTitle} !== ''}" class="sapUiTinyMarginBottom"></Text>
+									<Text
+										text="{i18n>salesOrganizationHeader} {globalModel>/userInfo/salesOrganization} - {i18n>distributionChannelHeader} {globalModel>/userInfo/distributionChannelName}"
+										class="sapUiTinyMarginBottom"></Text>
+									<Text
+										text="{i18n>customer}: {globalModel>/headerInfo/headerInfoQuotationCustomerId} - {globalModel>/headerInfo/headerInfoQuotationCustomerName}"
+										visible="{= ${globalModel>/headerInfo/headerInfoQuotationCustomerName} !== ''}"></Text>
+								</l:content>
+							</l:VerticalLayout>
+						</items>
+					</HBox>
+					<HBox width="5%" class="sapUiContentPadding"></HBox>
+					<HBox width="40%" alignItems="End" justifyContent="End" class="sapUiContentPadding">
+						<items>
+							<l:VerticalLayout width="100%" class="positionEnd">
+								<l:content class=" positionEnd">
+									<Text wrapping="false"
+										text="{path : 'globalModel>/quotationSelected/NetValue', formatter : '.formatter.formatNumber'} {globalModel>/headerInfo/headerInfoQuotationSalesCurrency}"
+										class="sapUiSmallMarginTop headerSizeNumber positionEnd"></Text>
+									<Text text="{i18n>status}: {globalModel>/headerInfo/headerInfoQuotationStatus}"
+										visible="{= ${globalModel>/headerInfo/headerInfoQuotationStatus} !== ''}" class="positionEnd"></Text>
+								</l:content>
+							</l:VerticalLayout>
+						</items>
+					</HBox>
+				</items>
+			</HBox>
+			<Table width="auto" itemPress="onCartItemPress" items="{globalModel>/cart}" growing="true" growingScrollToLoad="true"
+				mode="{path: 'globalModel>/quotationSelected/SapQuotationNo', formatter: '.formatter.formatModeTableCart'}">
+				<headerToolbar>
+					<OverflowToolbar>
+						<Title text="{i18n>CARTtableTitle}" level="H2"/>
+						<ToolbarSpacer/>
+						<Button icon="sap-icon://waiver" press="onContributionMargin" text="{i18n>CARTcm}"
+							visible="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}"/>
+						<Button icon="sap-icon://delete" press="onDeleteItems" text="{i18n>CARTdelete}"
+							visible="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}"/>
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column width="5%" visible="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}"></Column>
+					<Column hAlign="Center" demandPopin="true">
+						<Text text="{i18n>CARTitemNumber}"/>
+					</Column>
+					<Column demandPopin="true">
+						<Text text="{i18n>CARTmaterial}"/>
+					</Column>
+					<Column width="auto" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>CARTmaterialDescr}"/>
+					</Column>
+					<Column width="auto" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>CARTquantity}"/>
+					</Column>
+					<Column width="auto" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>CARTplant}"/>
+					</Column>
+					<Column width="auto" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>CARTneValue}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation" press="onCartItemPress">
+						<cells>
+							<Button icon="sap-icon://delete" press="onDeleteSingleItem" visible="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}"/>
+							<Text text="{path: 'globalModel>ItemNo', formatter: '.formatter.deleteZeros'}"/>
+							<Text text="{path: 'globalModel>Matnr', formatter: '.formatter.deleteZeros'}"/>
+							<Text text="{globalModel>Maktx}"/>
+							<Text text="{globalModel>Factor} x {globalModel>IndividualLength} {globalModel>Vrkme}"/>
+							<Text text="{globalModel>Werks}"/>
+							<ObjectNumber number="{globalModel>Netwr}" unit="{globalModel>Waerk}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<footer>
+			<Bar>
+				<contentLeft>
+					<Label text="{globalModel>/vkorg} {globalModel>/vtweg} {globalModel>/werks}"></Label>
+				</contentLeft>
+				<contentRight>
+					<Button icon="sap-icon://sys-back-2" press="onNavBack" text="{i18n>CARTback}"/>
+					<Button icon="sap-icon://hide" press="onExpert" text="{i18n>CARTexpert}"/>
+					<Button icon="sap-icon://save" press="onSaveQuote" text="{i18n>CARTSAPQuotation}"
+						enabled="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>

@@ -1,0 +1,114 @@
+<!--TAB 2-->
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:ff="sap.f"
+	xmlns:cards="sap.f.cards">
+	<VBox class="sapUiSmallMargin">
+		<ff:Card class="sapUiSmallMarginRigth">
+			<ff:content>
+				<f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="2" labelSpanL="2" labelSpanM="12" labelSpanS="12"
+					adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="0" columnsL="0" columnsM="0"
+					singleContainerFullSize="true" ariaLabelledBy="Title1">
+					<f:content>
+						<Label text="{i18n>customerIdName}"/>
+						<Input type="Text" showValueHelp="true" valueHelpRequest="handleValueHelpCustomer" valueStateText="{i18n>REQUIREDcustomer}"
+							value="{parts:[{path: 'globalModel>/quotationSelected/CustomerId'}, {path: 'globalModel>/quotationSelected/CustomerName'}], formatter: '.formatter.formatCustomerSearchHelp'} "
+							valueHelpOnly="true" id="CustomerId" editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}"/>
+						<Label text="{i18n>address}"/>
+						<Text
+							text="{globalModel>/quotationSelected/CustomerAddressCountry} {globalModel>/quotationSelected/CustomerAddressCity} {globalModel>/quotationSelected/CustomerAddressPostcode} {globalModel>/quotationSelected/CustomerAddressStreet}"></Text>
+						<Label text="{i18n>distributionChannel}"/>
+						<Select selectedKey="{globalModel>/quotationSelected/DistributionChannel}" change="changeDistributionChannel"
+							items="{path:'customCustomerDistributionChannel>/', templateShareable:true, length: 999999}"
+							editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}">
+							<items>
+								<core:Item text="{customCustomerDistributionChannel>Distributionchannelname}" enabled="true"
+									key="{customCustomerDistributionChannel>Distributionchannel}"/>
+							</items>
+						</Select>
+						<Label text="{i18n>shipToParty}"/>
+						<Select selectedKey="{globalModel>/quotationSelected/ShipToParty}" change="changeCustomerShipToParty"
+							items="{path:'customCustomerShipTo>/', templateShareable:true, length: 999999}"
+							editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}">
+							<items>
+								<core:Item
+									text="{customCustomerShipTo>Shiptoparty} - {customCustomerShipTo>Customeraddressstreet} {customCustomerShipTo>Customeraddresscity} {customCustomerShipTo>Customeraddressoostcode} {customCustomerShipTo>Customeraddresscountryname} ({customCustomerShipTo>Customername1})"
+									enabled="true" key="{customCustomerShipTo>Shiptoparty}"/>
+							</items>
+						</Select>
+						<Label text="{i18n>shipToName}"></Label>
+						<Input change="handleChange" value="{globalModel>/quotationSelected/ShipToPartyName}" editable="false"/>
+						<Label text="{i18n>shipToAddress}"></Label>
+						<Input placeholder="{i18n>street}" value="{globalModel>/quotationSelected/ShipToAddressStreet}"
+							editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}">
+							<layoutData>
+								<l:GridData span="XL5 L5 M6 S6"/>
+							</layoutData>
+						</Input>
+						<Input placeholder="{i18n>city}" value="{globalModel>/quotationSelected/ShipToAddressCity}"
+							editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}">
+							<layoutData>
+								<l:GridData span="XL5 L5 M6 S6"/>
+							</layoutData>
+						</Input>
+						<!--Label fittizia-->
+						<Label text=""/>
+						<Input placeholder="{i18n>cap}" value="{globalModel>/quotationSelected/ShipToAddressPostcode}"
+							editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}">
+							<layoutData>
+								<l:GridData span="XL5 L5 M6 S6"/>
+							</layoutData>
+						</Input>
+						<Select items="{path:'globalModel>/countries', length: 999999, sorter: {path: 'Name'}}"
+							selectedKey="{globalModel>/quotationSelected/ShipToAddressCountry}" change="changeCountry"
+							editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}">
+							<core:Item key="{globalModel>Country}" text="{globalModel>Name}"/>
+							<layoutData>
+								<l:GridData span="XL5 L5 M6 S6"/>
+							</layoutData>
+						</Select>
+						<Label text="{i18n>contactPerson}"></Label>
+						<Select items="{path:'customCustomerContactPerson>/', length: 999999}"
+							selectedKey="{globalModel>/quotationSelected/ContactPerson}{globalModel>/quotationSelected/ContactPersonFromSap}"
+							change="changeContactPerson" editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}">
+							<core:Item key="{customCustomerContactPerson>Contactpersonnr}{customCustomerContactPerson>Contactpersonfromsap}"
+								text="{customCustomerContactPerson>Contactpersonname1} {customCustomerContactPerson>Contactpersonname2} {customCustomerContactPerson>Contactpersonphone} {customCustomerContactPerson>Contactpersonemail}"/>
+						</Select>
+						<Button icon="sap-icon://add-contact" press="openCreateContactPerson" tooltip="{i18n>addContactPersonTooltip}"
+							enabled="{= ${globalModel>/quotationSelected/CustomerId} !== '' &amp;&amp; ${globalModel>/quotationSelected/SapQuotationNo} === ''}">
+							<layoutData>
+								<l:GridData span="XL1 L1 M1 S2"/>
+							</layoutData>
+						</Button>
+						<Button icon="sap-icon://eraser" press="openEditContactPerson" tooltip="{i18n>editContactPersonTooltip}"
+							enabled="{= ${viewState>/enableBtnEditContactPerson} &amp;&amp; ${globalModel>/quotationSelected/SapQuotationNo} === ''}">
+							<layoutData>
+								<l:GridData span="XL1 L1 M1 S2"/>
+							</layoutData>
+						</Button>
+						<Label text="{i18n>paymentTerms}"></Label>
+						<Select id="PaymentTermId" selectedKey="{globalModel>/quotationSelected/PaymentTerm}" change="changePaymentTerms"
+							items="{path:'globalModel>/paymentTerms', templateShareable:true, length: 999999}" showSecondaryValues="true"
+							editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}">
+							<items>
+								<core:ListItem text="{globalModel>Paymentterm}" enabled="true" additionalText="{globalModel>Paymenttermname}"
+									key="{globalModel>Paymentterm}"/>
+							</items>
+						</Select>
+						<Input value="{globalModel>/quotationSelected/PaymentTermName}" editable="false"></Input>
+						<Label text="{i18n>deliveryTerms}"></Label>
+						<Select id="DeliveryTermId" selectedKey="{globalModel>/quotationSelected/DeliveryTerm}" change="changeDeliveryTerms"
+							items="{path:'globalModel>/deliveryTerms', templateShareable:true, length: 999999}" showSecondaryValues="true"
+							editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}">
+							<items>
+								<core:ListItem text="{globalModel>Incoterm}" enabled="true" additionalText="{globalModel>Incotermname}" key="{globalModel>Incoterm}"/>
+							</items>
+						</Select>
+						<Input value="{globalModel>/quotationSelected/DeliveryTerm2}" placeholder="{i18n>deliveryLocation}"
+							editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}"></Input>
+						<Label text="{i18n>freeTextForCustomer}"></Label>
+						<TextArea value="{globalModel>/quotationSelected/FreeText}" editable="{= ${globalModel>/quotationSelected/SapQuotationNo} === ''}"></TextArea>
+					</f:content>
+				</f:SimpleForm>
+			</ff:content>
+		</ff:Card>
+	</VBox>
+</core:FragmentDefinition>

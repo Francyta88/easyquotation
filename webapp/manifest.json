@@ -1,0 +1,211 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "zotc_easyquote.zotc_easyquote",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponentForManifest",
+			"version": "0.0.0"
+		},
+		"dataSources": {
+			"mainService": {
+				"uri": "/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml",
+					"annotations": []
+				}
+			},
+			"ZotcEasyquote": {
+				"uri": "/xsodata/ticketing.xsodata/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/ZotcEasyquote/metadata.xml",
+					"annotations": []
+				}
+			},
+			"ZOTC_EASYQUOTE_SRV": {
+				"uri": "/sap/opu/odata/sap/ZOTC_EASYQUOTE_SRV/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/ZOTC_EASYQUOTE_SRV/metadata.xml",
+					"annotations": [
+						"annotation0"
+					]
+				}
+			},
+			"annotation0": {
+				"type": "ODataAnnotation",
+				"uri": "localService/annotation0.xml",
+				"settings": {
+					"localUri": "localService/annotation0.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "zotc_easyquote.zotc_easyquote.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "App"
+		},
+		"dependencies": {
+			"minUI5Version": "1.23.0",
+			"libs": {
+				"sap.m": {},
+				"sap.ui.core": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "zotc_easyquote.zotc_easyquote.i18n.i18n"
+				}
+			},
+			"@i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			},
+			"": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZOTC_EASYQUOTE_SRV",
+				"preload": true
+			},
+			"oDataModel": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request",
+					"useBatch": false
+				},
+				"dataSource": "ZOTC_EASYQUOTE_SRV",
+				"preload": true
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "zotc_easyquote.zotc_easyquote.view",
+				"controlAggregation": "pages",
+				"controlId": "app",
+				"clearControlAggregation": false,
+				"bypassed": {
+					"target": "notFound"
+				}
+			},
+			"routes": [
+				{
+					"name": "HomePage",
+					"pattern": "",
+					"targetControl": "app",
+					"targetAggregation": "pages",
+					"target": [
+						"HomePage"
+					]
+				},
+				{
+					"name": "QuotationsDetails",
+					"pattern": "QuotationsDetails",
+					"target": [
+						"QuotationsDetails"
+					]
+				},
+				{
+					"name": "ItemDetails",
+					"pattern": "ItemDetails",
+					"target": [
+						"ItemDetails"
+					]
+				},
+				{
+					"name": "Cart",
+					"pattern": "Cart",
+					"target": [
+						"Cart"
+					]
+				}
+			],
+			"targets": {
+				"App": {
+					"viewType": "XML",
+					"viewName": "App"
+				},
+				"HomePage": {
+					"viewType": "XML",
+					"viewId": "HomePage",
+					"viewName": "HomePage"
+				},
+				"QuotationsDetails": {
+					"viewType": "XML",
+					"viewId": "QuotationsDetails",
+					"viewName": "QuotationsDetails"
+				},
+				"ItemDetails": {
+					"viewType": "XML",
+					"viewId": "ItemDetails",
+					"viewName": "ItemDetails"
+				},
+				"notFound": {
+					"viewId": "notFound",
+					"viewName": "NotFound",
+					"transition": "show"
+				},
+				"Cart": {
+					"viewType": "XML",
+					"viewId": "Cart",
+					"viewName": "Cart"
+				}
+			}
+		}
+	},
+	"sap.platform.abap": {
+		"uri": "/sap/bc/ui5_ui5/sap/zotc_easyquote/webapp",
+		"_version": "1.1.0"
+	}
+}
